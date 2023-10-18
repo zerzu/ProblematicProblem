@@ -12,7 +12,7 @@ namespace ProblematicProblem
         internal bool addToList;
         internal void ActivityAdder()
         {
-            while (addToList)               //fix this shit it sucks balls
+            while (addToList)               //fix this shit this sucks balls
             {
                 Console.Write("What would you like to add? ");
                 
