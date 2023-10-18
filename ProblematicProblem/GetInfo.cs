@@ -14,7 +14,7 @@ namespace ProblematicProblem
 
         
 
-        char doActivity;
+        
         internal static bool exit = false;
         internal static bool view = false;
 
@@ -46,14 +46,14 @@ namespace ProblematicProblem
         internal static void UserInfo() 
         { 
             Console.Write("We are going to need your information first! What is your name? ");
-            string userName = Console.ReadLine();
+            string userName = Console.ReadLine();                               //TODO Add input validation
             Console.WriteLine();
 
-            Console.Write("What is your age? ");
+            Console.Write("What is your age? ");                                //TODO Add input validation
             int userAge = int.Parse(Console.ReadLine());
             Console.WriteLine();
 
-            var newActivity = new RandomActivity();
+            var newActivity = new RandomActivities();
 
             newActivity.SeeActivity(true);
 

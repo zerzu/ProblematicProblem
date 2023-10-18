@@ -9,8 +9,8 @@ namespace ProblematicProblem
 {
     internal class AddActivity
     {
-        internal bool addToList;
-        internal void ActivityAdder()
+        internal static bool addToList;
+        internal void ActivityAdder(bool activityAdd)
         {
             while (addToList)               //fix this shit
             {
@@ -20,18 +20,19 @@ namespace ProblematicProblem
 
                 if (input is string)
                 {
-                    RandomActivity.activities.Add(input);
+                    RandomActivities.activities.Add(input);
                 }                
 
                 else
                 {
                     Console.WriteLine("Invalid input. Please enter an activity to add");
                     Console.WriteLine();
-                    ActivityAdder();
+
+                   ActivityAdder(true);
                 }
                 
 
-                foreach (string activity in RandomActivity.activities)
+                foreach (string activity in RandomActivities.activities)
                 {
                     Console.Write($"{activity} ");
                     Thread.Sleep(250);
