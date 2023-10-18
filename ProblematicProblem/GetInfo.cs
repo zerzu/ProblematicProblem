@@ -10,11 +10,9 @@ namespace ProblematicProblem
     internal class GetInfo
     {
         public string userName { get; set; }
-        public int auserAge { get; set; } = 0;
+        public int auserAge { get; set; } = 0;       
 
         
-
-        char doActivity;
         internal static bool exit = false;
         internal static bool view = false;
 
@@ -28,6 +26,7 @@ namespace ProblematicProblem
 
             if (input.StartsWith("y"))
             {
+                Console.WriteLine();
                 UserInfo();
             }
             else if (input.StartsWith("n"))
@@ -40,7 +39,9 @@ namespace ProblematicProblem
                 Console.WriteLine("Invalid input. Please enter 'yes' or 'no'.");
                 Console.WriteLine();
                 Prompt();
-            }            
+            }
+
+            
         }
 
         internal static void UserInfo() 

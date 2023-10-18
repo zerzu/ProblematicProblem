@@ -23,54 +23,51 @@ namespace ProblematicProblem
 
             var input = Console.ReadLine().ToLower();
 
-            if (input.StartsWith("y") || input.StartsWith("s"))
-            {                
+            if (input.StartsWith("y") || input.StartsWith("s"))     //need to fix input validation here for no answer and else
+            {
+                Console.WriteLine();
+
+                Console.WriteLine("Activity List");
+                Console.WriteLine($"-------------");
+
+                foreach (var activity in activities)
                 {
-                    foreach (var activity in activities)
-                    {
-                        Console.Write($"{activity} ");
-                        Thread.Sleep(250);
-                    }
-
-                    Console.WriteLine();
-                    Console.Write("Would you like to add any activities before we generate one? yes/no: ");
-
-                    var generate = Console.ReadLine().ToLower();
-
-                   
-
-                    if (generate.StartsWith("y"))
-                    {
-                    }
-                    else if (input.StartsWith("n"))
-                    {
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid input. Please enter 'yes' or 'no'.");
-                        Console.WriteLine();                        
-                    }
-
-
+                    Console.Write($"||{activity}");
+                    Thread.Sleep(250);
                 }
 
-                else if (input.StartsWith("n"))
-            {
-                Console.WriteLine("Okay, have a great day!");       //fix this to instantiate not list activities method
+                Console.Write($"||");
 
+                Console.WriteLine();
+
+            }
+
+            Console.WriteLine();                                //Start Here Dummy
+
+            Console.WriteLine("Would you like to add any activities before we generate one? yes/no: ");
+
+            var generate = Console.ReadLine().ToLower();    // need to implement methods to pass this into
+
+
+
+            if (generate.StartsWith("y"))
+            {
+                Console.WriteLine("yes chosen");
+            }
+
+            else if (input.StartsWith("n"))
+            {
+                Console.WriteLine("no chosen");
             }
 
             else
             {
                 Console.WriteLine("Invalid input. Please enter 'yes' or 'no'.");
                 Console.WriteLine();
-                SeeActivity(true);
-            }
-            
-               
             }
 
-            
+
+
         }
     }
 }
