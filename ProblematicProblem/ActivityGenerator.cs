@@ -8,49 +8,80 @@ using System.Threading.Tasks;
 namespace ProblematicProblem
 {
     internal class ActivityGenerator
-    {
-        // Activity Generator while (addActivity)
-        //{
-        //    Console.Write("Connecting to the database");
+    {      
+        internal void GenerateActivity()
+        {
+            Console.Write("Connecting to the database");
 
-        //    for (int i = 0; i < 10; i++)
-        //    {
-        //        Console.Write(". ");
-        //        Thread.Sleep(500);
-        //    }
+            for (int i = 0; i < 10; i++)
+            {
+                Console.Write(". ");
+                Thread.Sleep(500);
+            }
 
-        //    Console.WriteLine();
-        //    Console.Write("Choosing your random activity");
+            Console.WriteLine();
+            Console.Write("Choosing your random activity");
 
-        //    for (int i = 0; i < 9; i++)
-        //    {
-        //        Console.Write(". ");
-        //        Thread.Sleep(500);
-        //    }
+            for (int i = 0; i < 9; i++)
+            {
+                Console.Write(". ");
+                Thread.Sleep(500);
+            }
 
-        //    Console.WriteLine();
+            Console.WriteLine();
 
-        //    Random rng = new Random();
+            Random rng = new Random();
 
 
-        //    int randomNumber = rng.Next(activities.Count);
-        //    string randomActivity = activities[randomNumber];
+            int randomNumber = rng.Next(ActivityList.activities.Count);
+            string randomActivity = ActivityList.activities[randomNumber];
 
-        //    // if (userAge > 21 && randomActivity == "Wine Tasting")   //remove comment
-        //    {
-        //        Console.WriteLine($"Oh no! Looks like you are too young to do {randomActivity}");
-        //        Console.WriteLine("Pick something else!");
+            if (GetInfo.yourAge < 21 && randomActivity == "Wine Tasting")
+            {
+                Console.WriteLine($"Oh no! Looks like you are too young to do {randomActivity}");
+                Console.WriteLine("Trying something else!");
 
-        //        activities.Remove(randomActivity);
+                ActivityList.activities.Remove(randomActivity);
 
-        //        randomNumber = rng.Next(activities.Count);
-        //        randomActivity = activities[randomNumber];
-        //    }
+                GenerateActivity();
+                
+            }
 
-        //    //Console.Write($"Ah got it! {randomActivity}, your random activity is: {userName}! Is this ok or do you want to grab another activity? Keep/Redo: ");
-        //    Console.WriteLine();
+            else
+            {
+                DisplayActivity();
+            }
 
-        //    addActivity = bool.Parse(Console.ReadLine());
-        //}
+             void DisplayActivity()
+            {
+                Console.WriteLine($"Ah got it! {GetInfo.yourName}, your random activity is: {randomActivity}!");
+                Console.WriteLine();
+                Console.WriteLine("Is this ok or do you want to grab another activity? Keep/Redo: ");
+
+                var keepOrNot = Console.ReadLine().ToLower();
+
+                if (keepOrNot.StartsWith("k"))
+                {
+                    Console.WriteLine($"Awesome! Enjoy {randomActivity}!");
+                    Console.WriteLine();
+                    Console.WriteLine("Press any key to exit.");
+                    GetInfo.exit = true;
+                }
+
+                else if (keepOrNot.StartsWith("r"))                 
+                {
+                    GenerateActivity();
+                }
+
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter 'keep' or 'redo'.");
+                    Console.WriteLine();
+
+                }
+
+            }
+
+        }
     }
 }

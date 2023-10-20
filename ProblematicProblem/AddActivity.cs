@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -9,39 +10,32 @@ namespace ProblematicProblem
 {
     internal class AddActivity
     {
-        internal bool addToList;
-        internal void ActivityAdder(bool addResponse)
+        internal void ActivityAdder()
         {
-            while (addToList)               //fix this shit it sucks balls
+
+            Console.WriteLine("What would you like to add?");
+            Console.WriteLine("Please do not enter any numbers or special characters.");
+            Console.Write("Activity: ");
+
+            string input = Console.ReadLine();
+
+            Regex regex = new Regex(@"^[a-zA-Z\s]+$");
+
+            if (!string.IsNullOrEmpty(input) && regex.IsMatch(input))
             {
-                Console.Write("What would you like to add? ");
-                
-                string input = Console.ReadLine();
+                ActivityList newActivityList = new ActivityList();
 
-                if (input is string)
-                {
-                    RandomActivity.activities.Append(input);
-                }                
+                ActivityList.activities.Add(input);
 
-                else
-                {
-                    Console.WriteLine("Invalid input. Please enter an activity to add");
-                    Console.WriteLine();
-                    ActivityAdder(true);
-                }
-                
-
-                foreach (var activity in RandomActivity.activities)
-                {
-                    Console.Write($"{activity} ");
-                    Thread.Sleep(250);
-                }
-
-                Console.WriteLine();
-                Console.WriteLine("Would you like to add more? yes/no: ");      // input validation and call a method
-
-                
+                newActivityList.SeeActivity(newActivityList);
             }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter an activity to add");
+                Console.WriteLine();
+                ActivityAdder();
+            }
+
         }
     }
 }
